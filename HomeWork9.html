@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>HomeWork 9</title>
+
+  <style>
+    *{
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    .main{
+      display: flex;
+      font-size: 35px;
+      color: oldlace;
+    }
+    div#d1{
+      padding: 5px;
+      height: 150px;
+      width: 150px;
+      background: rebeccapurple;
+    }
+    div#d2{
+      padding: 5px;
+      height: 150px;
+      width: 150px;
+      background: palevioletred;
+    }
+    div#d3{
+      padding: 5px;
+      height: 150px;
+      width: 150px;
+      background: orange;
+    }
+    div#d4{
+      padding: 5px;
+      height: 150px;
+      width: 150px;
+      background: olive;
+    }
+    @keyframes size{
+      0% { height: 150px; width: 150px }
+      50% {
+        height: 170px;
+        width: 120px;
+        border-radius: 0px 0px 5px 5px;
+      }
+      100% { height: 150px; width: 150px }
+    }
+  </style>
+
+  <script> 
+  console.log('hi');
+    let count = 0;
+    let obj = {};
+
+    function prevDef(event) {
+      event.preventDefault();
+    }
+    function change_size() {
+      // let hei = Math.floor(Math.random() * (200 - 100)) + 100,
+      //     wid = Math.floor(Math.random() * (200 - 100)) + 100,
+      //     d4 = document.getElementById('d4');
+      // d4.style.height = hei + 'px';
+      // d4.style.width = wid + 'px';
+      d4.style.animation = "size " + 1 + 's ' + "infinite"
+    }
+    function change_Size() {
+      time_out = setTimeout('change_size()', 1000);
+    }
+    function clrTimeOut() {
+      clearTimeout(time_out);
+    }
+
+    function chenge_color() {
+      let col = '#' + (Math.random().toString(16) + "000000").substring(2,8),
+          d2 = document.getElementById('d2');
+      d2.style.backgroundColor = col;
+    }
+
+    function change_Color() {
+      count ++;
+      obj['x' + count] = setInterval('chenge_color()', 1000)
+      console.log(obj);
+    }
+
+    function clrInt() {
+      clearInterval(obj['x' + count]);
+      count --;
+    }
+  </script>
+
+</head>
+<body>
+  <h2>Левый клик: задать Interval и TimeOut. Правый клик: отменить.</h2>
+  <div class="main"
+       oncontextmenu="prevDef(event)">
+    <div>
+      <div id="d1"
+           onclick="change_Color()"
+           oncontextmenu="clrInt()">set<br>Interval</div>
+      <div id="d2"></div>
+    </div>
+    <div>
+      <div id="d3"
+           onclick="change_Size()"
+           oncontextmenu="clrTimeOut()">set<br>Time<br>Out: 1s</div>
+      <div id="d4"></div>
+    </div>
+  </div>
+</body>
+</html>
